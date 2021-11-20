@@ -1,0 +1,73 @@
+@use '../util/vars.scss' as vars;
+@use '../util//mixins.scss' as mixin;
+
+//CONTAINER REGISTER
+.register-container{
+   @include mixin.screen-container;
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 2rem 0;
+   background: url('/images/register.jpg')  center/cover no-repeat;
+
+   &::after{
+      content: '';
+      position: absolute;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: block;
+      @include mixin.screen-container;
+      background-color: vars.$dark;
+      filter: opacity(.7)
+   }
+   
+   .form-register{
+      position: relative;
+      z-index: 10;
+      border-radius: .3rem;
+      border: .2rem solid vars.$beige;
+      padding: 2rem;
+      @include mixin.screen-container(90%);
+      @include mixin.tablet{
+         @include mixin.screen-container(75%, 50%, 80rem);
+      }
+   }
+
+   .register-section-one, .register-section-two{
+      @include mixin.tablet{
+         display: flex;
+         gap: 1rem;
+         justify-content: space-between;
+      }
+   }
+   
+}
+
+
+
+
+
+.form-actions{
+   .btn-register{
+      border:.2rem solid vars.$beige;
+      color: vars.$beige;
+      transition: all .3s ease-in-out;
+      &:hover{
+         transform: scale(1.1);
+         box-shadow: .1rem .1rem .3rem vars.$beige;
+      }
+   }
+   .btn-cancel{
+      border:.2rem solid vars.$danger;
+      color: vars.$beige;
+      background-color: vars.$danger;
+      transition: all .3s ease-in-out;
+
+      &:hover{
+         background-color: vars.$beige;
+         color: vars.$danger;
+      }
+   }
+}

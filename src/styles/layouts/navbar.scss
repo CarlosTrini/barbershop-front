@@ -1,0 +1,188 @@
+@use '../util/vars.scss'as vars;
+@use '../util/mixins.scss'as mixin;
+
+.navbar {
+   position: fixed;
+   top: 0;
+   left: 0;
+   @include mixin.screen-container(100%, 23rem);
+   padding: 2rem 0;
+   background-color: vars.$dark;
+
+   @include mixin.tablet {
+      display: flex;
+      padding: 1rem 0;
+      @include mixin.screen-container(100%, 13rem);
+   }
+
+
+   &-container {
+      @include mixin.tablet {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+      }
+   }
+
+   &-icon {
+      text-align: center;
+
+      img {
+         width: 8rem;
+         border: .4rem solid vars.$beige;
+         border-radius: 50%;
+         padding: .5rem;
+      }
+
+      h2 {
+         color: vars.$ligth;
+         transition: all .3s ease-in-out;
+         span {
+            font-weight: vars.$thin;
+         }
+         &:hover{
+            transform: scale(1.1) rotate(10deg);
+         }
+      }
+
+      @include mixin.desktop {
+         min-width: fit-content;
+         display: flex;
+         align-items: center;
+         gap: 1rem;
+      }
+   }
+
+   &-links {
+      position: absolute;
+      left: 0;
+      @include mixin.screen-container(100%, 'fit-content');
+      background-color: vars.$dark;
+      border-top: 1rem inset vars.$beige;
+      transition: all .3s ease-in-out;
+
+      @include mixin.desktop {
+         position: initial;
+         display: block;
+         max-width: 80rem;
+         border-top: none;
+      }
+
+      .links {
+         @include mixin.desktop {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            justify-self: flex-end;
+         }
+      }
+
+      a:not(.btn-signout) {
+         display: block;
+         padding: 3rem;
+         color: vars.$ligth;
+         text-align: center;
+         font-weight: vars.$bold;
+         text-transform: capitalize;
+         border-radius: .3rem;
+         transition: all .3s ease-in-out;
+
+         &:hover {
+            background-color: vars.$oxford-blue;
+            @include mixin.desktop{
+               background-color:transparent;
+               transform: scale(.9);
+            }
+         }
+      }
+
+      .btn-signout {
+         margin-top: 2rem;
+         color: vars.$oxford-blue;
+         background-color: vars.$beige;
+         transition: all .3s ease-in-out;
+
+         &:hover {
+            transform: scale(.9);
+         }
+
+         &:active {
+            transform: scale(1.1);
+         }
+
+         .icon-user {
+            width: 2rem;
+            margin-right: 1rem;
+         }
+
+         .user-in {
+            font-size: 1.5rem;
+            font-weight: vars.$thin;
+         }
+      }
+
+   }
+}
+
+.hide {
+   top: -300%;
+}
+
+.show {
+   top: 100%;
+}
+
+
+.menu-hamburger {
+   margin-top: 2rem;
+
+   span {
+      display: block;
+      width: 5rem;
+      height: .7rem;
+      margin: .5rem auto;
+      border-radius: 1rem;
+      background-color: vars.$beige;
+   }
+
+   &:active {
+      transform: scale(.9);
+   }
+
+   @include mixin.desktop {
+      display: none;
+   }
+
+}
+
+.car {
+   position: relative;
+
+   .notification {
+      &::after {
+         content: '';
+         position: absolute;
+         top: 40%;
+         left: .5rem;
+         display: block;
+         width: 2rem;
+         height: 2rem;
+         border-radius: 50%;
+         background-color: vars.$alert;
+         animation: notifications .6s 3 linear;
+      }
+   }
+}
+
+@keyframes notifications {
+   0%{
+      transform: scale(0);
+   }
+   50%{
+      box-shadow: 0 0 2rem vars.$alert;
+   }
+   100%{
+      transform: scale(1.2);
+      box-shadow: 0 0 1rem vars.$alert;
+   }
+}

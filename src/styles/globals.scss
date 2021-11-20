@@ -1,0 +1,63 @@
+@use './util/vars.scss' as vars;
+html{
+   box-sizing: border-box;
+   font-size: 62.5%;
+   font-family: vars.$font;
+   word-wrap: break-word;
+}
+
+*, *::after, *::before{
+   box-sizing: inherit;
+}
+
+body{
+   background-color: vars.$space-cadet;
+   font-size: 2rem;
+}
+a{
+   text-decoration: none;
+   color: vars.$dark;
+}
+img{
+   max-width: 100%;
+}
+ul{
+   padding: 0;
+   margin: 0;
+}
+li{
+   list-style: none;
+}
+h1, h2, h3,h4, p {
+   margin: 0;
+}
+h1{
+   font-size: 4rem;
+}
+h2{
+   font-size: 3.5rem;
+}
+h3{
+   font-size: 3rem;
+}
+h4{
+   font-size: 2.5rem;
+}
+
+figure{
+   padding: 0;
+   margin: 0;
+}
+.red{
+   background-color: red;
+}
+.blue{
+   background-color: blue;
+}
+.green{
+   background-color: green;
+}
+
+input, textarea{
+   width: 100%;
+}

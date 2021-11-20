@@ -1,0 +1,48 @@
+@use '../util/vars.scss' as vars;
+@use '../util/mixins.scss' as mixin;
+
+.categories-header {
+   padding: 2rem 0;
+   @include mixin.screen-container(100%, 10rem);
+   border-bottom: .1rem solid vars.$beige;
+}  
+
+.menu-category{
+   &-title {
+      margin: 0 auto;
+      width: fit-content;
+      text-align: center;
+      color: vars.$beige;
+      &::after{
+         content: '';
+         display: block;
+         margin: 1rem auto 0 auto;
+         width: 50%;
+         height:.2rem;
+         background-color: vars.$beige;
+      }
+   }
+}
+
+.categories{
+   @include mixin.screen-container(100%, fit-content, 70rem);
+   margin: 2rem auto;
+   ul{
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap:.5rem;
+   }
+   .btn-category{
+      background-color: vars.$beige;
+      transition: all .3s ease-in-out;
+      &:hover{
+         scale: (.9);
+         box-shadow: 0 0 .5rem vars.$ligth;
+      }
+   }
+}
+
+// .active{
+//    background-color: blue!important;
+// }

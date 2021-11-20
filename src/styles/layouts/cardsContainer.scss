@@ -1,0 +1,18 @@
+@use '../util/vars.scss'as vars;
+@use '../util/mixins.scss'as mixin;
+
+.category-title {
+   margin: 2rem 0;
+   text-transform: uppercase;
+   text-align: center;
+   color: vars.$beige;
+}
+
+.category-card-container {
+   @include mixin.screen-container(100%, fit-content, 110rem);
+   margin: 3rem auto;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+   gap: 1.5rem;
+   
+}

@@ -1,0 +1,53 @@
+@use '../util/vars.scss' as vars;
+@use '../util/mixins.scss' as mixin;
+
+.header{
+   position: relative;
+   @include mixin.screen-container(100%, 100vh);
+   background: url('/images/hero.jpg') center/cover  no-repeat;
+   z-index: -10;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   
+   @include mixin.margin-top-pages; // this is important
+
+   &::after{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      @include mixin.screen-container(100%, 100vh);
+      background-color: vars.$dark;
+      filter: opacity(.7);
+      border: .5rem solid vars.$beige;
+   }
+   
+   &-container{
+      position: relative;
+      z-index: 10;
+   }
+}
+
+.hero-details{
+   color: vars.$beige;
+
+   .hero-text{
+      &:not(:first-child){ //just second and more childs... 
+         text-align: center;
+         margin:5rem 0;
+      }
+      span{
+         font-weight: vars.$thin;
+      }
+   }
+   .hero-bann{
+      @include mixin.tablet{
+         width: 50%;
+         margin-left: 50% ;
+         text-align: right;
+         line-height: 1.5;
+      }
+   }
+}

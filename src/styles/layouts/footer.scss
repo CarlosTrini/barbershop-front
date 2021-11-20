@@ -1,0 +1,9 @@
+@use '../util/vars.scss' as vars;
+@use '../util/mixins.scss' as mixin;
+
+
+.footer{
+   @include mixin.screen-container(100%, 15rem);
+   background-color: vars.$dark;
+    color: vars.$beige;
+}

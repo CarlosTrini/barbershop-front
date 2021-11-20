@@ -1,0 +1,62 @@
+@use './vars.scss' as vars;
+
+// ----------------------------------------------------------------------------------------
+// --------------------------- BREAKPOINTS MIXINS --------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+// ******* Small devices landscape phones, 576px and up ************
+@mixin phone{
+   @media (min-width: vars.$sm) {
+      @content
+   }
+}
+
+// ******* Medium devices tablets, 768px and up ************
+@mixin tablet{
+   @media (min-width: vars.$md) {
+      @content
+   }
+}
+
+// ******* Large devices desktops, 992px and up ************
+@mixin desktop{
+   @media (min-width: vars.$lg) {
+      @content
+   }
+}
+
+// ******* X-Large devices large desktops, 1200px and up ************
+@mixin large-desktop{
+   @media (min-width: vars.$xl) {
+      @content
+   }
+}
+
+ // ******* XX-Large devices larger desktops, 1400px and up ************
+@mixin larger-desktop {
+   @media (min-width: vars.$xxl) {
+      @content
+   }
+}
+
+
+// ----------------------------------------------------------------------------------------
+// --------------------------- GENERALS MIXINS --------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+@mixin screen-container($width:100vw, $height:100vh, $maxWidth: 100%){
+   width:$width;
+   min-height:$height;
+   max-width: $maxWidth;
+}
+
+@mixin margin-top-pages{
+    margin-top: 23rem;
+
+   @include tablet{
+      margin-top: 14.5rem;   
+   }
+   @include desktop{
+      margin-top: 13rem;   
+   }
+}
