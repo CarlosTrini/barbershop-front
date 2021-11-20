@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from 'react';
-
-import icon from '../images/barber-icon.png';
-import '../styles/layouts/login.scss';
-
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import authActions from '../redux/auth/authActions';
 
+import '../styles/layouts/login.scss';
+import SpinnerAuth from '../components/SpinnerAuth';
+
 const Login = () => {
-   const [spinner, setSpinner] = useState(false);
 
    // things about reducer
    const dispatch = useDispatch(); // DISPATCH
-   const { loading } = useSelector(state => state.authReducer); //REDUCER
    const { loginAction } = authActions;
 
 
@@ -23,27 +20,13 @@ const Login = () => {
    //send data form 
    const handleLogin = data => dispatch(loginAction(data));
 
-
-   useEffect(() => {
-      const spinn = loading ? true : false;
-      setSpinner(spinn);
-
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [loading])
-
    return (
       <>
          <div className="login-container">
             <form onSubmit={handleSubmit(handleLogin)}
                className="form-login"
             >
-               <figure className={`form-icon ${ spinner && 'spinnerAnimation'}`}>
-                  <img src={icon} alt="icon login " />
-               </figure>
-               
-               <h2 className="form-title">
-                  {spinner ? 'cargando' : 'Bievenido'}
-               </h2>
+               <SpinnerAuth title={'bienvenido'}/>
 
                {/* INPUT USER  */}
                <div className="fields">

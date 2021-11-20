@@ -1,20 +1,30 @@
-import React, { useRef } from 'react';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
 
-import icon from '../images/barber-icon.png';
 import '../styles/layouts/register.scss';
 
-import { useForm } from 'react-hook-form';
-
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import authActions from '../redux/auth/authActions';
+import SpinnerAuth from '../components/SpinnerAuth';
 
 const Register = () => {
-   const pass = useRef('null');
-   const { register, handleSubmit, formState: { errors } } = useForm();
-   const handleRegister = (data) => {
-      console.log(data);
-   }
+   // things about reducer
+   const dispatch = useDispatch();
+   const {registerSuccess} = useSelector(state => state.authReducer);
+   const navigate = useNavigate();
 
+   //react hook form 
+   const { register, handleSubmit, formState: { errors }, getValues } = useForm();
 
+   //send data with the action
+   const handleRegister = (data) => dispatch(authActions.registerAction(data));
+
+   useEffect( () => {
+      registerSuccess && navigate('/login');
+      
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   },[registerSuccess]);
 
    return (
       <div className="">
@@ -22,18 +32,14 @@ const Register = () => {
             <form onSubmit={handleSubmit(handleRegister)}
                className="form-register"
             >
-               <figure className="form-icon">
-                  <img src={icon} alt="" />
-               </figure>
+               <SpinnerAuth title={'registro'}/>
 
-               <h2 className="form-title">Registro</h2>
 
                <div className="register-section-one">
                   {/* ++++++++++++INPUT NAME++++++++++++++++  */}
                   <div className="fields">
                      <label htmlFor="name" className="field-label">Ingresa tu nombre:</label>
                      <input type="text"
-                        ref={pass}
 
                         className="field-input"
                         id="name"
@@ -98,6 +104,7 @@ const Register = () => {
                      <input type="password"
                         className="field-input"
                         id="password"
+                        name="password"
                         {
                         ...register("password",
                            { required: true, minLength: 8 }
@@ -116,12 +123,20 @@ const Register = () => {
                         id="passwordConfirm"
                         {
                         ...register("passwordConfirm",
-                           { required: true, minLength: 8 }
+                           {
+                              required: true, minLength: 8, validate: value => {
+                                 //get password value from field
+                                 const password = getValues('password');
+                                 // check if the password and passwordConfirm are the same
+                                 return value === password
+                              }
+                           }
                         )
                         }
                      />
                      {errors.passwordConfirm?.type === 'required' && <p className="errors"> La contraseña de confirmación es requerida</p>}
                      {errors.passwordConfirm?.type === 'minLength' && <p className="errors">  Mínimo 8 carácteres</p>}
+                     {errors.passwordConfirm?.type === 'validate' && <p className="errors"> pass no iguales</p>}
 
                   </div>
                </div>{/* cierre register-secction-two */}
