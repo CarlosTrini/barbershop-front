@@ -4,6 +4,6 @@
 
 .footer{
    @include mixin.screen-container(100%, 15rem);
-   background-color: vars.$dark;
+   background: vars.$dark ;
     color: vars.$beige;
 }

@@ -4,6 +4,7 @@
 .categories-header {
    padding: 2rem 0;
    @include mixin.screen-container(100%, 10rem);
+   background:url('/images/services.jpg') center/cover no-repeat fixed;
    border-bottom: .1rem solid vars.$beige;
 }  
 
@@ -13,6 +14,7 @@
       width: fit-content;
       text-align: center;
       color: vars.$beige;
+      
       &::after{
          content: '';
          display: block;
