@@ -6,16 +6,19 @@ const {
    DELETE_SERVICE,
    UPDATE_SERVICE,
    GET_ALL_RESERVATIONS,
-   GET_RESERVATION_BY_DATE
+   GET_RESERVATION_BY_DATE,
+   LOADING,
+   RESET
 } = ADMIN_TYPES;
 
 const initialState = {
    services: [],
-   newService: null,
-   delService: null,
-   updService: null,
+   newService: false,
+   delService: false,
+   updService: false,
    reservations: [],
-   reservationDate: null
+   reservationDate: false,
+   loading: false
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -24,6 +27,22 @@ const adminReducer = (state = initialState, action) => {
          return {
             ...state,
             services: action.payload
+         }
+      case ADD_SERVICE: 
+         return {
+            ...state,
+            newService: action.payload,
+            loading: false
+      }
+      case LOADING:
+         return {
+            ...state,
+            loading: true
+      }
+      case RESET:
+         return {
+            ...state,
+            [action.payload.stateName] : action.payload.stateValue
          }
       default:
          return state;

@@ -56,19 +56,45 @@
             color: vars.$beige;
          }
          &:nth-child(even) {
-            background-color: vars.$beige;
+            background-color: vars.$antique-brass;
             td{
                border: .1rem solid vars.$dark;
             }
          }
 
-         &:hover{
-            background-color: vars.$antique-brass;
-            color: vars.$dark;
-            transform: scale(1.03);
-            outline:.3rem solid vars.$oxford-blue;
-            outline-offset: -.5rem;
-         }
+         // &:hover{
+         //    background-color: vars.$antique-brass;
+         //    color: vars.$dark;
+         //    transform: scale(1.03);
+         //    outline:.3rem solid vars.$beige;
+         //    outline-offset: -.9rem;
+         // }
       }
    }
+}
+
+.actions-table{
+   display: flex;
+   justify-content: space-around;
+}
+
+.icon-action{
+   padding: .5rem;  
+   border-radius: 50%;
+   transition: all .3s ease-in-out;
+
+   &:hover{
+      transform: scale(1.1);
+      border-radius: 25%;
+      filter: invert(1);
+   }
+   &:active{
+      transform: scale(1.2);
+   }
+}
+.edit-action{
+   background-color: vars.$alert;
+}
+.del-action{
+   background-color: vars.$danger;
 }

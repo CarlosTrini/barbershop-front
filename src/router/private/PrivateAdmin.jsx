@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Admin from '../../pages/Admin';
+import Admin from '../../pages/admin/Admin';
 import NotFound404 from '../../pages/NotFound404';
-import NewService from '../../components/admin/NewService';
+import NewService from '../../pages/admin/NewService';
 
 const PrivateAdmin = () => {
    // LAS RUTAS DE "account" Y "admin" son privadas junto con sus subrutas

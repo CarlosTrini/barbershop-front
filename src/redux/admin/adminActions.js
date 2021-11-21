@@ -1,6 +1,6 @@
 import axiosClient from '../../config/axiosClient';
 import axiosHeaderToken from '../../config/axiosHeaderToken';
-import {alertTimer} from '../../helper/alertHelper';
+import { alertTimer } from '../../helper/alertHelper';
 // TYPES
 import { ADMIN_TYPES } from "../types";
 const {
@@ -9,7 +9,9 @@ const {
    DELETE_SERVICE,
    UPDATE_SERVICE,
    GET_ALL_RESERVATIONS,
-   GET_RESERVATION_BY_DATE
+   GET_RESERVATION_BY_DATE,
+   LOADING,
+   RESET
 } = ADMIN_TYPES;
 
 
@@ -21,21 +23,19 @@ const setHeaderToken = () => {
 
 // +++++++++++++++++++++++++ SERVICES
 
-const getServicesAction = () => {
-   setHeaderToken();
-   return async(dispatch) => {
+const getServicesAction = () => { //ACTION
+   //  setHeaderToken();
+   return async (dispatch) => {
       try {
-         console.log('headers => ', axiosClient.defaults.headers.common);
          const res = await axiosClient();
-         if(res?.data?.error){
+         if (res?.data?.error) {
             throw res.data.msg
          }
          const services = res.data.msg;
          dispatch(servicesFn(services));
       } catch (error) {
-         console.error(error.response.data.msg);
-         const err = error?.response?.data?.msg || error;
-         alertTimer('warning', err);
+         console.error(error);
+         alertTimer('warning', 'Ha ocurrido un error revise su conexión o intente más tarde');
       }
    }
 }
@@ -44,10 +44,50 @@ const servicesFn = (services) => ({
    payload: services
 })
 
+
+const newServiceAction = (newService) => {  //ACTION
+   setHeaderToken();
+   return async (dispatch) => {
+      dispatch(loadingFn());
+      try {
+         const res = await axiosClient.post('/service', newService);
+         if (res?.data?.error) {
+            throw res.data.msg
+         }
+         dispatch(newServiceFn(true));
+      } catch (error) {
+         console.error(error);
+         alertTimer('warning', 'Ha ocurrido un error revise su conexión o intente más tarde');
+         dispatch(newServiceFn(false));
+      }
+   }
+}
+const newServiceFn = (result) => ({
+   type: ADD_SERVICE,
+   payload: result
+})
+
 // +++++++++++++++++++++++++ RESERVATIONS
 
 
+
+
+
+// ++++++++++++ LOADING
+const loadingFn = () => ({
+   type: LOADING
+});
+
+const resetAction = (stateName, stateValue) => (dispatch) => {
+   dispatch({
+      type: RESET,
+      payload: {stateName, stateValue}
+   });
+}
+
 const adminActions = {
-   getServicesAction
+   getServicesAction,
+   newServiceAction,
+   resetAction
 }
 export default adminActions;

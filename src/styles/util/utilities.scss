@@ -25,13 +25,28 @@
    cursor: pointer;
 }
 
+.btn-none{
+   border: none;
+   background-color: transparent;
+}
+
 .link{
    display: block;
    margin: 1rem;
    text-align: center;
    font-weight: vars.$bold;
 }
+.btn-cancel{
+   border:.2rem solid vars.$danger;
+   color: vars.$beige;
+   background-color: vars.$danger;
+   transition: all .3s ease-in-out;
 
+   &:hover{
+      background-color: vars.$beige;
+      color: vars.$danger;
+   }
+}
 // -------------- FORMS
 .fields {
    margin: 2rem 0;
@@ -45,6 +60,9 @@
    }
 
    .field-input {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
       padding: .6rem;
       border: none;
       border-radius: .4rem;

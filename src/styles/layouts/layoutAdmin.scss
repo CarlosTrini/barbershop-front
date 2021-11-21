@@ -1,0 +1,54 @@
+@use '../util/vars.scss'as vars;
+@use '../util/mixins.scss'as mixin;
+
+.header-admin {
+   position: relative;
+   @include mixin.margin-top-pages;
+   border-bottom: .5rem solid vars.$beige;
+
+   .admin-title {
+      padding: 1rem 0;
+      text-align: center;
+      color: vars.$beige;
+
+      span {
+         font-weight: vars.$thin;
+      }
+   }
+
+   .admin-hamburger{
+      margin-left: 2rem ;
+      border: none;
+      background-color: transparent;
+      filter: invert(1);
+
+      &:active{
+         transform:scale(1.2);
+      }
+   }
+
+   .nav-admin {
+      position: absolute;
+      top: 100%;
+      z-index: 30;
+      transition:  all .3s ease-in-out;
+      a {
+         width: 100%;
+         padding: 2rem;
+         color: vars.$beige;
+         border: .1rem solid vars.$beige;
+         background-color: vars.$oxford-blue;
+
+         &:hover {
+            background-color: vars.$blue-light;
+         }
+      }
+   }
+}
+
+.hide-nav-admin{
+   left: -200%;
+}
+.show-nav-admin{
+   left: 0;
+}

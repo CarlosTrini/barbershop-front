@@ -5,6 +5,7 @@
    position: fixed;
    top: 0;
    left: 0;
+   z-index: 100;
    @include mixin.screen-container(100%, 23rem);
    padding: 2rem 0;
    background-color: vars.$dark;

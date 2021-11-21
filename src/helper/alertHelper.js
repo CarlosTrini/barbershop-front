@@ -6,7 +6,7 @@ export const alertTimer = (icon = 'success', title) => {
       icon,
       title,
       showConfirmButton: false,
-      timer: 2500
+      timer: 3000
     })
 }
 

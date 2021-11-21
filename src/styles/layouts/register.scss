@@ -59,15 +59,4 @@
          box-shadow: .1rem .1rem .3rem vars.$beige;
       }
    }
-   .btn-cancel{
-      border:.2rem solid vars.$danger;
-      color: vars.$beige;
-      background-color: vars.$danger;
-      transition: all .3s ease-in-out;
-
-      &:hover{
-         background-color: vars.$beige;
-         color: vars.$danger;
-      }
-   }
 }
