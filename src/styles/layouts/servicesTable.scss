@@ -1,0 +1,74 @@
+@use '../util/vars.scss'as vars;
+@use '../util/mixins.scss'as mixin;
+
+.services-table-container {
+   @include mixin.screen-container(100%, 50vh);
+   margin-top: 3rem;
+}
+
+.table-container {
+   margin-top: 3rem;
+   padding-bottom: 3rem;
+   overflow-x: scroll;
+   border-radius: .3rem;
+}
+
+.table {
+   margin: 0 auto;
+   min-width: 80rem;
+   @include mixin.tablet{
+      width: 100%;
+   }
+   text-align: center;
+   border-collapse: collapse;
+
+   caption{
+      margin-bottom: 2rem;
+      font-size: 3rem;
+      color: vars.$beige;
+   }
+
+   &-alert{
+      width:fit-content;
+      margin: .5rem auto;
+      padding: 1rem;
+      background-color: vars.$danger;
+      border-radius: .3rem;
+   }
+
+   thead th {
+      padding: 2rem 0;
+      border: .1rem solid vars.$beige;
+      background-color: vars.$dark;
+      color: vars.$alert;
+   }
+
+   tbody {
+      td {
+         padding: 2rem 0;
+         border: .1rem solid vars.$beige;
+      }
+
+      tr {
+         font-weight: vars.$bold;
+         transition: all .2s ease-in-out;
+         &:nth-child(odd){
+            color: vars.$beige;
+         }
+         &:nth-child(even) {
+            background-color: vars.$beige;
+            td{
+               border: .1rem solid vars.$dark;
+            }
+         }
+
+         &:hover{
+            background-color: vars.$antique-brass;
+            color: vars.$dark;
+            transform: scale(1.03);
+            outline:.3rem solid vars.$oxford-blue;
+            outline-offset: -.5rem;
+         }
+      }
+   }
+}

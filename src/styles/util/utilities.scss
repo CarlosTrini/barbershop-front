@@ -25,7 +25,12 @@
    cursor: pointer;
 }
 
-
+.link{
+   display: block;
+   margin: 1rem;
+   text-align: center;
+   font-weight: vars.$bold;
+}
 
 // -------------- FORMS
 .fields {

@@ -1,6 +1,6 @@
 // AUTH TYPES
 import { AUTH_TYPES } from "../types";
-const { LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_SUCCESS, REGISTER_ERROR, LOADING } = AUTH_TYPES;
+const { LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_SUCCESS, REGISTER_ERROR, LOADING, SIGNOUT } = AUTH_TYPES;
 
 
 //INITIAL STATE
@@ -38,6 +38,14 @@ const authReducer = (state = initialState, action) => {
             ...state,
             loading: false,
             registerSuccess: true
+         }
+      case SIGNOUT: 
+         return {
+            ...state,
+            login: false,
+            role: null,
+            user: null,
+            token:null
          }
       case LOADING:
          return {

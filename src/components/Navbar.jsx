@@ -1,20 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import '../styles/layouts/navbar.scss';
 import icon from '../images/barber-icon.png';
 import iconUser from '../images/user-icon.png';
 
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
+import authActions from '../redux/auth/authActions';
 
 const Navbar = () => {
 
+   //things about redux
+   const dispatch = useDispatch();
+   const { login, role, user } = useSelector(state => state.authReducer);
+
    const [toggle, setToggle] = useState(false);
    const [isAdmin, setIsAdmin] = useState(false);
-   const [car, setCar] = useState(true);
-   const [login, setLogin] = useState(false);
+   const [isLogin, setIsLogin] = useState(false);
+   const [userName, setUserName] = useState('');
+   const [car, setCar] = useState(false);
+   const [path, setPath] = useState('/login');
+
 
    const handleToggle = () => setToggle(!toggle);
+
+   const handleCloseSesion = () => dispatch(authActions.logOutAction());
+
+   useEffect(() => {
+      setIsAdmin(role === 'admin' ? true : false);
+      setIsLogin(login);
+      setUserName(user);
+      setPath(login ? '/' : '/login');
+   }, [login, role, user]);
 
    return (
       <nav className="navbar">
@@ -38,13 +56,14 @@ const Navbar = () => {
                   <li>
                      <Link to="/services"> servicios</Link>
                   </li>
-                  <li>
-                     {
-                        isAdmin
-                           ? <Link to="/admin"> Panel admin</Link>
-                           : <Link to="/account"> mi cuenta</Link>
-                     }
-                  </li>
+                  {
+                     isAdmin && <li> <Link to="/admin"> Panel admin</Link> </li>
+                  }
+                  {
+                     !isAdmin && isLogin ?
+                        <li> <Link to="/account"> mi cuenta</Link> </li>
+                        : null
+                  }
                   {
                      !isAdmin
                      &&
@@ -56,10 +75,10 @@ const Navbar = () => {
                   }
 
                   <li>
-                     <Link to="/login" className="btn btn-signout">
+                     <Link to={path} className="btn btn-signout" onClick={handleCloseSesion}>
                         <img src={iconUser} alt="icon user" className="icon-user" />
-                        {login ? 'Cerrar' : 'LogIn' }
-                        <p className="user-in"></p>
+                        {isLogin ? 'Cerrar' : 'LogIn'}
+                        <p className="user-in">{userName}</p>
                      </Link>
                   </li>
                </ul>

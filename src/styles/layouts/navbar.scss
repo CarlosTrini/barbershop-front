@@ -71,12 +71,15 @@
       .links {
          @include mixin.desktop {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             justify-self: flex-end;
          }
       }
 
+      a{
+         min-width:fit-content;
+      }
       a:not(.btn-signout) {
          display: block;
          padding: 3rem;
@@ -86,6 +89,7 @@
          text-transform: capitalize;
          border-radius: .3rem;
          transition: all .3s ease-in-out;
+
 
          &:hover {
             background-color: vars.$oxford-blue;

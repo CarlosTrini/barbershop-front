@@ -7,9 +7,7 @@ const Home = () => {
    return (
       <Layout >
          <Header />
-         
       </Layout>
    )
 }
-
 export default Home;

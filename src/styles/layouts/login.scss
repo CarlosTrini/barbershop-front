@@ -60,4 +60,11 @@
 }
 
 
+.link-home{
+   color:vars.$beige;
+   border-bottom: .2rem solid vars.$beige;
 
+   &:hover{
+      color:vars.$alert;
+   }
+}

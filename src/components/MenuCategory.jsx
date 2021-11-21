@@ -4,19 +4,6 @@ import '../styles/layouts/menuCategory.scss';
 
 const MenuCategory = ({ handleCategory }) => {
 
-
-   // let activeClass = {whoContains: 'todos'}
-
-
-   // const activeFn = (e) => {
-   //    const category = e.target.id;
-   //    if (category !== activeClass.whoContains) {
-   //       e.target.classList.add('active');
-   //    }else{
-   //       e.target.classList.remove('active');
-   //    }
-   // }
-
    const handleSelect = category => handleCategory(category);
    
 

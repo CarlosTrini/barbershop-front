@@ -5,15 +5,19 @@ import axiosHeaderToken from '../../config/axiosHeaderToken';
 import { AUTH_TYPES } from '../types';
 import { alertBasic, alertTimer } from '../../helper/alertHelper';
 
+const { LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_SUCCESS, REGISTER_ERROR, LOADING, SIGNOUT  } = AUTH_TYPES;
 
-const { LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_SUCCESS, REGISTER_ERROR, LOADING } = AUTH_TYPES;
 
 // +++++++++++++++++++++++++  LOCALSTORAGE
-const datalocalStorage = ({token, user, role}) => {
+const makeStorage = ({token, user, role}) => {
    localStorage.setItem('login', true);
    localStorage.setItem('token', token);
    localStorage.setItem('user', user);
    localStorage.setItem('role', role);
+}
+
+const deleteStorage = () => {
+   localStorage.clear();
 }
 
 // +++++++++++++++++++++++LOGIN ACTIONS
@@ -27,7 +31,7 @@ const loginAction = (data) => {
             throw 'Ha ocurrido un error, intentelo de nuevo o revise su conexión';
          }
          const {token, user, role } = res.data.msg;
-         datalocalStorage({token, user, role});
+         makeStorage({token, user, role});
          dispatch(loginSuccesFn({token, user, role}));
          axiosHeaderToken(token);
       } catch (error) {
@@ -73,6 +77,18 @@ const registerErrorFn = () => ({
    type: REGISTER_ERROR
 })
 
+// ************************** CLOSE SESION
+const logOutAction = () => {
+   return (dispatch) => {
+      dispatch(logOutFn());
+      deleteStorage();
+   }
+}
+const logOutFn = () => ({
+   type: SIGNOUT
+})
+
+
 // +++++ LOADING
 const loadingFn = () => ({
    type: LOADING
@@ -81,6 +97,7 @@ const loadingFn = () => ({
 // ACTIONS APP
 const authActions = {
    loginAction,
-   registerAction
+   registerAction,
+   logOutAction
 }
 export default authActions;

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import authActions from '../redux/auth/authActions';
 
 import '../styles/layouts/login.scss';
@@ -10,8 +10,11 @@ import SpinnerAuth from '../components/SpinnerAuth';
 
 const Login = () => {
 
+   const navigate = useNavigate();
+
    // things about reducer
    const dispatch = useDispatch(); // DISPATCH
+   const {login} = useSelector(state => state.authReducer);
    const { loginAction } = authActions;
 
 
@@ -19,6 +22,12 @@ const Login = () => {
    const { register, handleSubmit, formState: { errors } } = useForm();
    //send data form 
    const handleLogin = data => dispatch(loginAction(data));
+
+
+   useEffect(() => {
+      login && navigate('/');
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   },[login]);
 
    return (
       <>
@@ -71,6 +80,9 @@ const Login = () => {
                      type="submit">Iniciar Sesión</button>
 
                   <Link to="/register" className="btn btn-register">Crear cuenta</Link>
+               </div>
+               <div>
+                  <Link to="/" className="link link-home">Regresar al Home</Link>
                </div>
             </form>
          </div>
