@@ -29,11 +29,12 @@ export const alertOptions = (title, text, icon = 'warning' , titleConfirm, textC
       confirmButtonText: 'Entendido'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          titleConfirm,
-          textConfirm,
-          'success'
-        )
+          Swal.fire(
+            titleConfirm,
+            textConfirm,
+            'success'
+          )
+          return true;
       }
     })
 }

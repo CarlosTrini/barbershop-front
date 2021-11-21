@@ -11,6 +11,15 @@
    padding-bottom: 3rem;
    overflow-x: scroll;
    border-radius: .3rem;
+
+   .del-service{
+      width: fit-content;
+      margin: auto;
+      padding: 1rem;
+      border-radius: .3rem;
+      color: vars.$beige;
+      background-color: vars.$danger;
+   }
 }
 
 .table {
@@ -23,10 +32,22 @@
    border-collapse: collapse;
 
    caption{
+      text-align: left;
       margin-bottom: 2rem;
       font-size: 3rem;
       color: vars.$beige;
+
+      .caption-msg{
+         margin-top: 1rem;
+         font-size: 1.5rem;
+
+         @include mixin.tablet{
+            display: none;
+         }
+      }
    }
+
+
 
    &-alert{
       width:fit-content;
@@ -56,19 +77,11 @@
             color: vars.$beige;
          }
          &:nth-child(even) {
-            background-color: vars.$antique-brass;
+            background-color: vars.$blue-light;
             td{
                border: .1rem solid vars.$dark;
             }
          }
-
-         // &:hover{
-         //    background-color: vars.$antique-brass;
-         //    color: vars.$dark;
-         //    transform: scale(1.03);
-         //    outline:.3rem solid vars.$beige;
-         //    outline-offset: -.9rem;
-         // }
       }
    }
 }

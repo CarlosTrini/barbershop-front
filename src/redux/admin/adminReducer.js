@@ -28,21 +28,27 @@ const adminReducer = (state = initialState, action) => {
             ...state,
             services: action.payload
          }
-      case ADD_SERVICE: 
+      case ADD_SERVICE:
          return {
             ...state,
             newService: action.payload,
             loading: false
-      }
+         }
+      case DELETE_SERVICE:
+         return {
+            ...state,
+            delService: action.payload,
+            loading: false
+         }
       case LOADING:
          return {
             ...state,
             loading: true
-      }
+         }
       case RESET:
          return {
             ...state,
-            [action.payload.stateName] : action.payload.stateValue
+            [action.payload.stateName]: action.payload.stateValue
          }
       default:
          return state;

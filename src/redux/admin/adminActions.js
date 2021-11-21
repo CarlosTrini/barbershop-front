@@ -20,11 +20,14 @@ const setHeaderToken = () => {
    axiosHeaderToken(token);
 }
 
+const checkStatus = (status) => {
+   const err = status === 401 ? 'No autorizado' : 'Revise su conexión o intente más tarde';
+   alertTimer('error', err);
+}
 
 // +++++++++++++++++++++++++ SERVICES
 
 const getServicesAction = () => { //ACTION
-   //  setHeaderToken();
    return async (dispatch) => {
       try {
          const res = await axiosClient();
@@ -52,13 +55,15 @@ const newServiceAction = (newService) => {  //ACTION
       try {
          const res = await axiosClient.post('/service', newService);
          if (res?.data?.error) {
-            throw res.data.msg
+            console.error(res.data);
+            // eslint-disable-next-line no-throw-literal
+            throw 200;
          }
          dispatch(newServiceFn(true));
       } catch (error) {
          console.error(error);
-         alertTimer('warning', 'Ha ocurrido un error revise su conexión o intente más tarde');
-         dispatch(newServiceFn(false));
+         checkStatus(error?.response?.status || error);
+         // dispatch(newServiceFn(false));
       }
    }
 }
@@ -67,9 +72,32 @@ const newServiceFn = (result) => ({
    payload: result
 })
 
+const delServiceAction = (id) => { // ACTION
+   setHeaderToken();
+   return async(dispatch)  => {
+      dispatch(loadingFn());
+      try {
+         const res = await axiosClient.delete(`/service/${id}`);
+         if (res?.data?.error) {
+            console.error(res.data);
+            // eslint-disable-next-line no-throw-literal
+            throw 200;
+         }
+         dispatch(delServiceFn(true));
+      } catch (error) {
+         console.error(error);
+         checkStatus(error?.response?.status || error);
+         dispatch(delServiceFn(false));
+      }
+   }
+}
+const delServiceFn = (result) => ({
+   type: DELETE_SERVICE,
+   payload: result
+})
+
+
 // +++++++++++++++++++++++++ RESERVATIONS
-
-
 
 
 
@@ -88,6 +116,7 @@ const resetAction = (stateName, stateValue) => (dispatch) => {
 const adminActions = {
    getServicesAction,
    newServiceAction,
+   delServiceAction,
    resetAction
 }
 export default adminActions;

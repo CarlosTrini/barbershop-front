@@ -31,6 +31,9 @@
       position: absolute;
       top: 100%;
       z-index: 30;
+      padding: 0 1rem;
+      border-radius: .5rem;
+      background-color: vars.$oxford-blue;
       transition:  all .3s ease-in-out;
       a {
          width: 100%;
