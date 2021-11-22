@@ -97,6 +97,14 @@
    }
 }
 
+.form-service{
+   @include mixin.screen-container(50%, fit-content, 40rem);
+   margin: 5rem auto;
+   padding: 2rem;
+   border-radius: .3rem;
+   border: .1rem solid vars.$beige;
+}
+
 // CHECKS
 .errors{
    position: relative;

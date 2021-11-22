@@ -38,10 +38,10 @@ const RowsTable = ({ s }) => {
          <td>${price}</td>
          <td>{category}</td>
          <td className="actions-table">
-            <Link to='edit' title="edit service">
+            <Link to={`edit-service/${_id}`} title="edit service"> {/* admin/edit-service/id */}
                <img src={editIcon} alt="edit icon" className="icon-action edit-action" />
             </Link>
-            <button to='delete' className="btn-none" id={_id} title="delete service" onClick={handleDelete} ref={serviceDel}>
+            <button className="btn-none" id={_id} title="delete service" onClick={handleDelete} ref={serviceDel}>
                <img src={trashIcon} alt="delete icon" className="icon-action del-action" />
             </button>
          </td>

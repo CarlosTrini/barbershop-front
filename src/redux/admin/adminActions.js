@@ -5,12 +5,13 @@ import { alertTimer } from '../../helper/alertHelper';
 import { ADMIN_TYPES } from "../types";
 const {
    GET_ALL_SERVICES,
+   SERVICE_TO_EDIT,
    ADD_SERVICE,
    DELETE_SERVICE,
    UPDATE_SERVICE,
    GET_ALL_RESERVATIONS,
    GET_RESERVATION_BY_DATE,
-   LOADING,
+   LOADING_ADMIN,
    RESET
 } = ADMIN_TYPES;
 
@@ -30,7 +31,7 @@ const checkStatus = (status) => {
 const getServicesAction = () => { //ACTION
    return async (dispatch) => {
       try {
-         const res = await axiosClient();
+         const res = await axiosClient.get();
          if (res?.data?.error) {
             throw res.data.msg
          }
@@ -51,7 +52,7 @@ const servicesFn = (services) => ({
 const newServiceAction = (newService) => {  //ACTION
    setHeaderToken();
    return async (dispatch) => {
-      dispatch(loadingFn());
+      dispatch(loadingAdminFn());
       try {
          const res = await axiosClient.post('/service', newService);
          if (res?.data?.error) {
@@ -75,7 +76,7 @@ const newServiceFn = (result) => ({
 const delServiceAction = (id) => { // ACTION
    setHeaderToken();
    return async(dispatch)  => {
-      dispatch(loadingFn());
+      dispatch(loadingAdminFn());
       try {
          const res = await axiosClient.delete(`/service/${id}`);
          if (res?.data?.error) {
@@ -97,13 +98,45 @@ const delServiceFn = (result) => ({
 })
 
 
+const getServiceAction = (id) => { //ACTION
+   setHeaderToken();
+   return async(dispatch) => {
+      dispatch(loadingAdminFn());
+      try {
+         const res = await axiosClient.get(`/service/${id}`);
+         if (res?.data?.error) {
+            console.error(res.data);
+            // eslint-disable-next-line no-throw-literal
+            throw 200;
+         }
+         const service = res.data.msg;
+         dispatch(getServiceFn(service));
+      } catch (error) {
+         console.error(error);
+         checkStatus(error?.response?.status || error);
+      }
+   }
+}
+const getServiceFn = (service) => ({
+   type: SERVICE_TO_EDIT,
+   payload: service
+})
+
+
+const updateServiceAction = (service) => {
+   return async(dispatch) => {
+      console.log('RECIBO ESTE SERVICIO ==> ', service);
+
+   }
+}
+
 // +++++++++++++++++++++++++ RESERVATIONS
 
 
 
 // ++++++++++++ LOADING
-const loadingFn = () => ({
-   type: LOADING
+const loadingAdminFn = () => ({
+   type: LOADING_ADMIN
 });
 
 const resetAction = (stateName, stateValue) => (dispatch) => {
@@ -115,8 +148,10 @@ const resetAction = (stateName, stateValue) => (dispatch) => {
 
 const adminActions = {
    getServicesAction,
+   getServiceAction,
    newServiceAction,
    delServiceAction,
+   updateServiceAction,
    resetAction
 }
 export default adminActions;

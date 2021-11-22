@@ -17,8 +17,9 @@
       height: 100%;
       top: 0;
       left: 0;
+      bottom: 0;
+      right: 0;
       display: block;
-      @include mixin.screen-container;
       background-color: vars.$dark;
       filter: opacity(.7)
    }
@@ -44,10 +45,6 @@
    }
    
 }
-
-
-
-
 
 .form-actions{
    .btn-register{

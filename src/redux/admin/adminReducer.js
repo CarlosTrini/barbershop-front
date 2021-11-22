@@ -2,12 +2,13 @@
 import { ADMIN_TYPES } from "../types";
 const {
    GET_ALL_SERVICES,
+   SERVICE_TO_EDIT,
    ADD_SERVICE,
    DELETE_SERVICE,
    UPDATE_SERVICE,
    GET_ALL_RESERVATIONS,
    GET_RESERVATION_BY_DATE,
-   LOADING,
+   LOADING_ADMIN,
    RESET
 } = ADMIN_TYPES;
 
@@ -26,7 +27,8 @@ const adminReducer = (state = initialState, action) => {
       case GET_ALL_SERVICES:
          return {
             ...state,
-            services: action.payload
+            services: action.payload,
+            loading:false
          }
       case ADD_SERVICE:
          return {
@@ -40,7 +42,12 @@ const adminReducer = (state = initialState, action) => {
             delService: action.payload,
             loading: false
          }
-      case LOADING:
+      case SERVICE_TO_EDIT: 
+         return {
+            ...state,
+            updService: action.payload
+         }
+      case LOADING_ADMIN:
          return {
             ...state,
             loading: true

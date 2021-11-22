@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Admin from '../../pages/admin/Admin';
 import NotFound404 from '../../pages/NotFound404';
 import NewService from '../../pages/admin/NewService';
+import EditService from '../../pages/admin/EditService';
 
 const PrivateAdmin = () => {
    // LAS RUTAS DE "account" Y "admin" son privadas junto con sus subrutas
@@ -11,6 +12,7 @@ const PrivateAdmin = () => {
       <Routes>
          <Route exact path='/' element={<Admin />} /> {/* /admin  */}
          <Route path='new-service' element={<NewService />} /> {/* /admin/new-service  */}
+         <Route path='edit-service/:id' element={<EditService /> } /> {/* /admin/new-service/id  */}
          <Route path='*' element={<NotFound404 />} />
       </Routes>
    )

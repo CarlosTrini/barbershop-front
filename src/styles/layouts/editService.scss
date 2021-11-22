@@ -1,0 +1,6 @@
+@use '../util/vars.scss' as vars;
+.edit-service{
+   padding: 1rem;
+   border-radius: .3rem;
+   background-color: vars.$danger;
+}

@@ -1,57 +1,61 @@
-@use '../util/mixins.scss' as mixin;
-@use '../util/vars.scss' as vars;
+@use '../util/mixins.scss'as mixin;
+@use '../util/vars.scss'as vars;
 
 // CONTAINER
-.login-container{
-   @include mixin.screen-container;
+.login-container {
    position: relative;
    display: flex;
+   @include mixin.screen-container;
+   padding: 1rem 0;
    justify-content: center;
    align-items: center;
-   background: url('/images/login.jpg')  center/cover no-repeat;
+   background: url('/images/login.jpg') center/cover no-repeat;
 
-   &::after{
+   &::after {
       content: '';
       position: absolute;
-      height: inherit;
       top: 0;
       left: 0;
+      bottom: 0;
+      right: 0;
       display: block;
-      @include mixin.screen-container;
       background-color: vars.$dark;
       filter: opacity(.7)
    }
 }
 
 // FORMS
-.form-login{   
+.form-login {
    position: relative;
    z-index: 10;
    padding: 2rem;
    border-radius: .5rem;
-   border:.5rem solid vars.$beige;
-   @include mixin.screen-container(90%, 50vh);
-   @include mixin.tablet{
-      @include mixin.screen-container(50%, 50vh, 50rem);
+   border: .5rem solid vars.$beige;
+   @include mixin.screen-container(90%, fit-content);
+
+   @include mixin.tablet {
+      @include mixin.screen-container(50%, fit-content, 50rem);
    }
 
-   .form-actions{
-      .btn-signin{
+   .form-actions {
+      .btn-signin {
          background-color: vars.$oxford-blue;
-         border:.2rem solid vars.$beige;
+         border: .2rem solid vars.$beige;
          color: vars.$beige;
          transition: all .3s ease-in-out;
-         &:hover{
+
+         &:hover {
             transform: scale(1.1);
             box-shadow: .1rem .1rem .3rem vars.$beige;
          }
       }
-      .btn-register{
-         border:.2rem solid vars.$beige;
+
+      .btn-register {
+         border: .2rem solid vars.$beige;
          color: vars.$antique-brass;
          transition: all .3s ease-in-out;
 
-         &:hover{
+         &:hover {
             background-color: vars.$beige;
             color: vars.$oxford-blue;
          }
@@ -60,11 +64,11 @@
 }
 
 
-.link-home{
-   color:vars.$beige;
+.link-home {
+   color: vars.$beige;
    border-bottom: .2rem solid vars.$beige;
 
-   &:hover{
-      color:vars.$alert;
+   &:hover {
+      color: vars.$alert;
    }
 }

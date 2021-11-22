@@ -8,7 +8,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 // import Services from '../pages/Services';
 //import NotFound404 from '../pages/NotFound404';
 // import AccountUser from '../pages/AccountUser';
-import PrivateRoutes from './private/PrivateAdmin';
+import PrivateAdmin from './private/PrivateAdmin';
 import PrivateClient from './private/PrivateClient';
 import PublicRoutes from './PublicRoutes';
 
@@ -36,7 +36,7 @@ function AppRouter() {
 
       <Route path='/*' element={<PublicRoutes />} />
       <Route path='/admin/*'
-        element={role === 'admin' && login ? <PrivateRoutes /> : <Navigate to='/' />}
+        element={role === 'admin' && login ? <PrivateAdmin /> : <Navigate to='/' />}
       />
       <Route path='/account/*'
         element={role === 'client' && login ? <PrivateClient /> : <Navigate to='/' />}
