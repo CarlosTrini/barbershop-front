@@ -10,7 +10,7 @@ const CardService = ({ service }) => {
             <h3>{service.service}</h3>
          </header>
          <div className="card-details">
-            <p>Precio: $ <span>{service.precio}</span></p>
+            <p>Precio: $ <span>{service.price}</span></p>
             <p>Categoría: <span>{service.category}</span></p>
          </div>
          <footer className="card-footer">

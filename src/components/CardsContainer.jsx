@@ -1,35 +1,45 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import '../styles/layouts/cardsContainer.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import clientActions from '../redux/client/clientActions';
 
 import CardService from './CardService';
 
+import '../styles/layouts/cardsContainer.scss';
+
 const CardsContainer = ({ categorySelected }) => {
 
-   useEffect(() => {
-      // la idea es que en cuanto cambie la categoria, se realize una petición al servidor y este responda... posteriormente y los servicios sean enviados como props o actualizados en el store de redux y tomarlos
-      console.log(categorySelected);
-   }, [categorySelected])
+   const [spinn, setSpinn] = useState(false);
 
-   const services = [
-      { id: 1, service: 'corte caballero militar', precio: '120.50', category: 'cortes caballero'},
-      { id: 21, service: 'corte caballero moikano', precio: '120.50' , category: 'cortes caballero'},
-      { id: 2, service: 'corte dama puntas', precio: '170.50' , category: 'cortes dama'},
-      { id: 3, service: 'corte niño', precio: '70' , category: 'cortes niño'},
-      { id: 4, service: 'corte niña', precio: '70' , category: 'cortes niña'},
-      { id: 5, service: 'corte barba', precio: '70' , category: 'barba'},
-      { id: 6, service: 'delineado barba ', precio: '70' , category: 'barba'},
-   ];
+   //client reducer
+   const dispatch = useDispatch();
+   const { services, loading } = useSelector(state => state.clientReducer);
+
+   useEffect(() => {
+      dispatch(
+         categorySelected === 'todos'
+            ? clientActions.getServicesAction()
+            : clientActions.getServiceCategory(categorySelected)
+      );
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [categorySelected])
 
    return (
       <section className="container">
          <header>
-            <h2 className="category-title">{categorySelected}</h2>
+            <h2 className="category-title">
+               {
+                    loading
+                  ? 'Cargando servicios categoría...'
+                  : categorySelected
+               }
+               
+            </h2>
          </header>
 
          <div className="category-card-container">
             {
-               !services.length < 1 && services.map(s => <CardService key={s.id} service={s} />)
+               !services.length < 1 && services.map(s => <CardService key={s._id} service={s} />)
             }
          </div>
 
