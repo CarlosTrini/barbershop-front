@@ -10,6 +10,7 @@ const {
    DELETE_SERVICE,
    UPDATE_SERVICE,
    GET_ALL_RESERVATIONS,
+   DELETE_RESERVATION,
    GET_RESERVATION_BY_DATE,
    LOADING_ADMIN,
    RESET
@@ -123,15 +124,75 @@ const getServiceFn = (service) => ({
 })
 
 
-const updateServiceAction = (service) => {
+const updateServiceAction = (service) => { //ACTION
    return async(dispatch) => {
-      console.log('RECIBO ESTE SERVICIO ==> ', service);
-
+      try {
+         const res = await axiosClient.put('/service/', service);
+         if (res?.data?.error) {
+            console.error(res.data);
+            // eslint-disable-next-line no-throw-literal
+            throw 200;
+         }
+         dispatch(updateServiceFn(true));
+      } catch (error) {
+         console.error(error);
+         checkStatus(error?.response?.status || error);
+         dispatch(updateServiceFn(false));
+      }
    }
 }
+const updateServiceFn = (result) => ({
+   type: UPDATE_SERVICE,
+   payload: result
+})
 
 // +++++++++++++++++++++++++ RESERVATIONS
+const getReservationDateAction = (date) => {
+   setHeaderToken();
+   return async(dispatch) => {
+      try {
+          const res = await axiosClient.get(`/reservation/date/${date}`);
+          if (res?.data?.error) {
+            console.error(res.data);
+            // eslint-disable-next-line no-throw-literal
+            throw 200;
+         }
+         const reservations = res.data.msg;
+         dispatch(reservationFn(reservations));
+      } catch (error) {
+         console.error(error);
+         checkStatus(error?.response?.status || error);
+      }
+   }
+}
+const reservationFn = (reservations) => ({
+   type: GET_RESERVATION_BY_DATE,
+   payload: reservations
+})
 
+
+const deleteReservationAction = (id) => {
+   setHeaderToken();
+   return async(dispatch) => {
+      try {
+         const res = await axiosClient.delete(`/reservation/${id}`);
+         if (res?.data?.error) {
+            console.error(res.data);
+            // eslint-disable-next-line no-throw-literal
+            throw 200;
+         }
+         dispatch(deleteReservationFn(true));
+      } catch (error) {
+         console.error(error);
+         checkStatus(error?.response?.status || error);
+         dispatch(deleteReservationFn(false));
+      }
+   }
+}
+const deleteReservationFn = (result) => ({
+   type: DELETE_RESERVATION,
+   payload: result
+})
 
 
 // ++++++++++++ LOADING
@@ -139,7 +200,7 @@ const loadingAdminFn = () => ({
    type: LOADING_ADMIN
 });
 
-const resetAction = (stateName, stateValue) => (dispatch) => {
+const resetAction = (stateName, stateValue = false) => (dispatch) => {
    dispatch({
       type: RESET,
       payload: {stateName, stateValue}
@@ -152,6 +213,8 @@ const adminActions = {
    newServiceAction,
    delServiceAction,
    updateServiceAction,
+   getReservationDateAction,
+   deleteReservationAction,
    resetAction
 }
 export default adminActions;

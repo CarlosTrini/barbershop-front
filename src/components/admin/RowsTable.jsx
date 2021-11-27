@@ -33,7 +33,7 @@ const RowsTable = ({ s }) => {
 
    return (
       <tr>
-         <td>{_id}</td>
+         <td className='id-field'>{_id}</td>
          <td>{service}</td>
          <td>${price}</td>
          <td>{category}</td>

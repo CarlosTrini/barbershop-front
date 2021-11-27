@@ -7,6 +7,7 @@ const {
    DELETE_SERVICE,
    UPDATE_SERVICE,
    GET_ALL_RESERVATIONS,
+   DELETE_RESERVATION,
    GET_RESERVATION_BY_DATE,
    LOADING_ADMIN,
    RESET
@@ -17,8 +18,10 @@ const initialState = {
    newService: false,
    delService: false,
    updService: false,
+   updServiceResult: false,
    reservations: [],
    reservationDate: false,
+   delReservation: false,
    loading: false
 };
 
@@ -28,7 +31,7 @@ const adminReducer = (state = initialState, action) => {
          return {
             ...state,
             services: action.payload,
-            loading:false
+            loading: false
          }
       case ADD_SERVICE:
          return {
@@ -42,7 +45,7 @@ const adminReducer = (state = initialState, action) => {
             delService: action.payload,
             loading: false
          }
-      case SERVICE_TO_EDIT: 
+      case SERVICE_TO_EDIT:
          return {
             ...state,
             updService: action.payload
@@ -51,6 +54,21 @@ const adminReducer = (state = initialState, action) => {
          return {
             ...state,
             loading: true
+         }
+      case UPDATE_SERVICE:
+         return {
+            ...state,
+            updServiceResult: action.payload,
+         }
+      case GET_RESERVATION_BY_DATE:
+         return {
+            ...state,
+            reservations: action.payload
+         }
+      case DELETE_RESERVATION: 
+         return {
+            ...state,
+            delReservation: action.payload
          }
       case RESET:
          return {

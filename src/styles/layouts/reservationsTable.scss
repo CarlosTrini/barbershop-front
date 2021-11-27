@@ -19,18 +19,20 @@
    }
 
    tr {
-      transition: all .2s ease-in-out;
       &:nth-child(odd){
          color: vars.$beige;
       }
       &:nth-child(even) {
-         background-color: vars.$blue-light;
+         background-color: vars.$beige;
          td{
-            border: .1rem solid vars.$dark;
+            border: .1rem solid vars.$oxford-blue;
          }
       }
    }
 }
-.complete-action{
-   background-color: vars.$blue-light;
+.edit-action{
+   background-color: vars.$alert;
+}
+.del-action{
+   background-color: vars.$danger;
 }
