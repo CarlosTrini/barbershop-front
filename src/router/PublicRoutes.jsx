@@ -6,6 +6,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Services from '../pages/Services';
 import NotFound404 from '../pages/NotFound404';
+import Car from '../pages/Car';
 
 
 const PublicRoutes = () => {
@@ -18,6 +19,7 @@ const PublicRoutes = () => {
             <Route exact path='login' element={<Login />} />
             <Route exact path='register' element={<Register />} />
             <Route exact path='services' element={<Services />} />
+            <Route exact path='car' element={<Car />} />
             <Route path='*' element={<NotFound404 />} />
          </Routes>
       </div>

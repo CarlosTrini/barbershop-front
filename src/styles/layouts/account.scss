@@ -1,0 +1,6 @@
+@use '../util/mixins.scss' as mixin;
+@use '../util/vars.scss' as vars;
+
+.account{
+   @include mixin.margin-top-pages;
+}

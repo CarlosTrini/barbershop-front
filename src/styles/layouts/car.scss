@@ -1,0 +1,111 @@
+@use '../util/mixins.scss' as mixin;
+@use '../util/vars.scss' as vars;
+
+.car-page {
+   @include mixin.margin-top-pages;
+   @include mixin.screen-container;
+   padding-top: 2rem;
+
+   .car-msg{
+      width: fit-content;
+      margin: auto;
+      padding: 3rem;
+      border-radius: .5rem;
+      text-align: center;
+      background-color: vars.$beige;
+   }
+
+   .car-products{
+      margin: 3rem auto;
+   }
+}
+
+
+.empty-car-image{
+      margin: 10rem  auto;
+      max-width: 70rem ;
+      height: inherit;
+      border-radius: 50%;
+      border: .2rem solid vars.$beige;
+      background-color: vars.$oxford-blue;
+}
+
+.card-service{
+   position: relative;
+   max-width: 80rem;
+   margin: 2rem auto;
+   padding: 1rem;
+   border-radius: .3rem;
+   text-align:center;
+   background-color: vars.$beige;
+   transition: all .3s ease-in-out;
+   &:hover{
+      box-shadow: .5rem .5rem .5rem vars.$beige;
+   }
+
+   &-title{
+      margin: 1rem 0;
+      text-transform: capitalize;
+   }
+   &-details{
+      font-weight: vars.$bold;
+      margin-top: 2rem;
+      span{
+         font-weight:vars.$thin;
+      }
+   }
+   .total-service{
+      padding: 1rem 0;
+      background-color: vars.$alert;
+   }
+
+   .service-actions{
+      @include mixin.phone{
+         margin-top: 2rem;
+         display: flex;
+         justify-content: space-around;
+      }
+
+
+      & > button:hover{
+         color: vars.$beige;
+      }
+      & > button:active{
+         transform: scale(1.1);
+      }
+      .btn-increment-service{
+         border: .1rem solid vars.$oxford-blue;
+         &:hover{
+            background-color: vars.$oxford-blue;
+         }
+      }
+      .btn-decrement-service{
+         border: .1rem solid vars.$danger;
+         &:hover{
+            background-color: vars.$danger;
+         }
+      }
+      .btn-reservation{
+         border: .1rem solid vars.$blue-light;
+         &:hover{
+            background-color: vars.$blue-light;
+         }
+      }
+   }
+}
+
+
+.btn.btn-del-car{
+   margin-top: 2rem;
+   color: vars.$beige;
+   background-color:vars.$danger;
+   transition: all .2s ease-in-out;
+
+   &:hover{
+      background-color: vars.$alert;
+      color: vars.$oxford-blue;
+   }
+   &:active{
+      transform: scale(1.1);
+   }
+}

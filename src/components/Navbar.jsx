@@ -14,12 +14,12 @@ const Navbar = () => {
    //things about redux
    const dispatch = useDispatch();
    const { login, role, user } = useSelector(state => state.authReducer);
+   const {car} = useSelector(state => state.clientReducer);
 
    const [toggle, setToggle] = useState(false);
    const [isAdmin, setIsAdmin] = useState(false);
    const [isLogin, setIsLogin] = useState(false);
    const [userName, setUserName] = useState('');
-   const [car, setCar] = useState(false);
    const [path, setPath] = useState('/login');
 
 
@@ -32,7 +32,7 @@ const Navbar = () => {
       setIsLogin(login);
       setUserName(user);
       setPath(login ? '/' : '/login');
-   }, [login, role, user]);
+   }, [login, role, user, car]);
 
    return (
       <nav className="navbar">

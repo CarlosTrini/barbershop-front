@@ -57,7 +57,7 @@ const Reservations = () => {
             </form>
             {
                reservations.length < 1 
-               ? <h3 className='alert-reservations'>No hay reservaciones para mostrar</h3>
+               ? <h3 className='alert-msg'>No hay reservaciones para mostrar</h3>
                :<ReservationsTable dateSelected = {dateSelected}/>
             }
 

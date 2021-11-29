@@ -17,7 +17,10 @@ const makeStorage = ({token, user, role}) => {
 }
 
 const deleteStorage = () => {
-   localStorage.clear();
+   localStorage.removeItem('login');
+   localStorage.removeItem('token');
+   localStorage.removeItem('user');
+   localStorage.removeItem('role');
 }
 
 // +++++++++++++++++++++++LOGIN ACTIONS

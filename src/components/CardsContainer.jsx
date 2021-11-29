@@ -39,7 +39,9 @@ const CardsContainer = ({ categorySelected }) => {
 
          <div className="category-card-container">
             {
-               !services.length < 1 && services.map(s => <CardService key={s._id} service={s} />)
+               services.length < 1 
+               ? <h3 className='alert-msg'>No hay servicios de esta categoría</h3>
+               :  services.map(s => <CardService key={s._id} service={s} />)
             }
          </div>
 

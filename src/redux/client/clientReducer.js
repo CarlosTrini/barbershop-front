@@ -13,7 +13,7 @@ const {
 
 const initialState = {
    services: [],
-   car: [],
+   car: JSON.parse(localStorage.getItem('carServices')),
    reservationsClient: [],
    addReservation: false,
    loading: false
@@ -28,6 +28,68 @@ const clientReducer = (state = initialState, action) => {
             services: action.payload,
             loading: false
          }
+      case ADD_CAR:
+         let dataCar = [];
+         // first time
+         if (state.car === null) {
+            state.car = dataCar;
+         }
+
+         // check if the service exists
+         if (state.car.some(s => s._id === action.payload._id)) {
+            dataCar = state.car.map(s => {
+               return s._id === action.payload._id ? { ...s, qty: s.qty + 1 } : s;
+            })//map
+         }
+         else {
+            // if car is not empty but service does not exists... add service
+            dataCar = [...state.car, { ...action.payload, qty: 1 }];
+         }
+
+         //save in localstorage
+         localStorage.setItem('carServices', JSON.stringify(dataCar));
+
+         return {
+            ...state,
+            car: dataCar
+         }
+
+      case DEL_ITEM_CAR:
+         let carDelItems = [];
+         let needFilter = false;
+
+         carDelItems = state.car.map(s => {
+            if (s._id === action.payload._id && s.qty > 1) {
+               return { ...s, qty: s.qty - 1 }
+            }
+            else if (s._id === action.payload._id && s.qty === 1) {
+               needFilter = true;
+            }
+            return s;
+         })
+
+         let carUpdated = needFilter
+            ? state.car.filter(i => i._id !== action.payload._id)
+            : carDelItems;
+
+         if (carUpdated.length < 1) {
+            localStorage.removeItem('carServices')
+            carUpdated = null;
+         } else {
+            localStorage.setItem('carServices', JSON.stringify(carUpdated));
+         }
+
+         return {
+            ...state,
+            car: carUpdated
+         }
+
+      case DEL_CAR:
+         return {
+            ...state,
+            car: null
+         }
+
       case LOADING_CLIENT:
          return {
             ...state,

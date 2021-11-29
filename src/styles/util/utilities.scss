@@ -21,7 +21,7 @@
    text-transform: capitalize;
    font-weight: vars.$bold;
    border: none;
-   background-color: transparent;
+   // background-color: transparent;
    cursor: pointer;
 }
 
@@ -113,20 +113,8 @@
    border-radius: .3rem;
    text-align: center;
    color: vars.$ligth;
+   font-weight: vars.$bold;
    background-color: vars.$danger;
-
-   &::after{
-      content: 'x';
-      display: grid;
-      margin: .5rem auto 0 auto;
-      place-content: center;
-      width: 1rem;
-      height: 1rem;
-      padding: 1.2rem;
-      text-align: center;
-      border-radius: 50%;
-      border:.1rem solid vars.$ligth;
-   }
 }
 // SPINNER 
 .spinnerAnimation{
@@ -237,4 +225,14 @@
    }
 }
 
+
+.alert-msg{
+   width: fit-content;
+   margin: 2rem auto;
+   padding:1rem;
+   border-radius: .3rem;
+   border:.1rem solid vars.$beige;
+   color: vars.$beige;
+   background-color:vars.$danger;
+}
 

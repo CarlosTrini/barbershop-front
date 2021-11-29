@@ -67,7 +67,46 @@ const serviceCategoryFn = (servicesFilter) => ({
    payload: servicesFilter
 })
 
+const addItemCarAction = (service) => { // ACTION
+   return (dispatch) => {
+      dispatch({
+         type: ADD_CAR,
+         payload: service
+      });
+   }
+}
 
+const delItemCarAction = (service) => {//ACTION
+   return (dispatch) => {
+      dispatch({
+         type: DEL_ITEM_CAR,
+         payload: service
+      });
+   }
+}
+
+const delCarAction = () => { //ACTION
+   return (dispatch) => {
+      dispatch({
+         type: DEL_CAR
+      })
+   }
+}
+
+const makeReservationAction = (reservation) => {//ACTION
+   return async(dispatch) => {
+      try {
+         const res = await axiosClient.post('/reservation/', reservation);
+         console.log(res);
+      } catch (error) {
+         console.error(error)
+      }
+   }
+}
+const makeReservationFn = (reservation) => ({
+   type: ADD_RESERVATION,
+   payload: reservation
+})
 
 // LOADING
 const loadingFn = (status) => ({
@@ -78,7 +117,11 @@ const loadingFn = (status) => ({
 // object actions
 const clientActions = {
    getServicesAction,
-   getServiceCategory
+   getServiceCategory,
+   addItemCarAction,
+   delItemCarAction,
+   delCarAction,
+   makeReservationAction
 }
 
 export default clientActions;

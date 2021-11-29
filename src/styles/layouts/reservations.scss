@@ -1,15 +1,7 @@
 @use '../util/mixins.scss'as mixin;
 @use '../util/vars.scss'as vars;
 
-.alert-reservations{
-   width: fit-content;
-   margin: 2rem auto;
-   padding:1rem;
-   border-radius: .3rem;
-   border:.1rem solid vars.$beige;
-   color: vars.$beige;
-   background-color:vars.$danger;
-}
+
 .btn-reservations {
    border: .2rem solid vars.$beige !important;
    color: vars.$beige;

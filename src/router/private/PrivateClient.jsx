@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
-import AccountUser from '../../pages/AccountUser';
+import Account from '../../pages/client/Account';
 import NotFound404 from '../../pages/NotFound404';
 
 const PrivateClient = () => {
@@ -8,7 +8,7 @@ const PrivateClient = () => {
    return (
       <div>
          <Routes>
-            <Route path="/" element={<AccountUser />} />    {/* /account */}
+            <Route path="/" element={<Account />} />    {/* /account */}
             <Route path="*" element={<NotFound404 />} />
          </Routes>
       </div>
