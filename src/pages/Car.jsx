@@ -25,8 +25,8 @@ const Car = () => {
                <h2 className="car-msg">
                   {
                      car
-                        ? 'Tus productos seleccionados!'
-                        : 'Aún no hay productos en tu carrito'
+                        ? 'Tus servicios seleccionados!'
+                        : 'Aún no hay servicios en tu carrito'
                   }
                </h2>
                {

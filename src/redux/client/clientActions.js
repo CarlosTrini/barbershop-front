@@ -94,12 +94,20 @@ const delCarAction = () => { //ACTION
 }
 
 const makeReservationAction = (reservation) => {//ACTION
+   setHeaderToken();
    return async(dispatch) => {
+      dispatch(loadingFn(true));
       try {
          const res = await axiosClient.post('/reservation/', reservation);
-         console.log(res);
+         if (res?.data?.error) {
+            throw res.data.msg
+         }
+         dispatch(makeReservationFn(reservation));
+         alertTimer('success', 'La cita fue generada de manera exitosa... Te esperamos!');
       } catch (error) {
-         console.error(error)
+         console.error(error);
+         checkStatus(error?.response?.status || error);
+         dispatch(loadingFn(false));
       }
    }
 }

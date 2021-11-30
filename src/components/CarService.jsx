@@ -16,6 +16,7 @@ const CarService = ({ serviceCar }) => {
 
    // auth y client reducer
    const dispatch = useDispatch();
+   const { loading } = useSelector(state => state.clientReducer);
    const { login } = useSelector(state => state.authReducer);
 
 
@@ -32,29 +33,31 @@ const CarService = ({ serviceCar }) => {
       setActiveModal(false);
       const reservation = {
          _id,
-         service,
+         nameservice: service,
          date: dateHour.date,
          hour: dateHour.hour,
          price,
          category,
-         total: totalPay,
-         qty
+         totalPay: totalPay,
+         quantity: qty
       }
 
-      console.log('entra')
       dispatch(clientActions.makeReservationAction(reservation));
    }
 
    useEffect(() => {
       (dateHour.date.trim() !== '' && dateHour.hour.trim() !== '') && makeReservation();
 
-      setTotalPay(qty * price)
+      setTotalPay(qty * price);
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [dateHour, qty])
 
    return (
       <div className="card-service">
          <h3 className="card-service-title">{service}</h3>
+         {
+           loading &&  <h4 className="card-service-title">Guardando cita...</h4>
+         }
          <p className="card-service-details">Precio: $<span> {price}</span></p>
          <p className="card-service-details">Categoría: <span>{category}</span></p>
          <p className="card-service-details">Cantidad: <span>{qty}</span></p>
@@ -77,6 +80,7 @@ const CarService = ({ serviceCar }) => {
             activeModal &&
             <FormReservation setDateHour={setDateHour} setActiveModal={setActiveModal} />
          }
+
       </div>
    )
 }

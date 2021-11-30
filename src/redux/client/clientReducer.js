@@ -15,7 +15,6 @@ const initialState = {
    services: [],
    car: JSON.parse(localStorage.getItem('carServices')),
    reservationsClient: [],
-   addReservation: false,
    loading: false
 }
 
@@ -82,6 +81,23 @@ const clientReducer = (state = initialState, action) => {
          return {
             ...state,
             car: carUpdated
+         }
+
+      case ADD_RESERVATION:
+         let filterCar;
+         filterCar = state.car.filter(s => s._id !== action.payload._id);
+         
+         if (filterCar.length < 1) {
+            localStorage.removeItem('carServices')
+            filterCar = null;
+         } else {
+            localStorage.setItem('carServices', JSON.stringify(filterCar));
+         }
+
+         return {
+            ...state,
+            car: filterCar,
+            loading: false
          }
 
       case DEL_CAR:
