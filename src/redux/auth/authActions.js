@@ -9,11 +9,12 @@ const { LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_SUCCESS, REGISTER_ERROR, LOADING, S
 
 
 // +++++++++++++++++++++++++  LOCALSTORAGE
-const makeStorage = ({token, user, role}) => {
+const makeStorage = ({token, user, role, id}) => {
    localStorage.setItem('login', true);
    localStorage.setItem('token', token);
    localStorage.setItem('user', user);
    localStorage.setItem('role', role);
+   localStorage.setItem('id', id);
 }
 
 const deleteStorage = () => {
@@ -21,6 +22,7 @@ const deleteStorage = () => {
    localStorage.removeItem('token');
    localStorage.removeItem('user');
    localStorage.removeItem('role');
+   localStorage.removeItem('id');
 }
 
 // +++++++++++++++++++++++LOGIN ACTIONS
@@ -33,9 +35,9 @@ const loginAction = (data) => {
             // eslint-disable-next-line no-throw-literal
             throw 'Ha ocurrido un error, intentelo de nuevo o revise su conexión';
          }
-         const {token, user, role } = res.data.msg;
-         makeStorage({token, user, role});
-         dispatch(loginSuccesFn({token, user, role}));
+         const {token, user, role, id } = res.data.msg;
+         makeStorage({token, user, role,id});
+         dispatch(loginSuccesFn({token, user, role, id}));
          axiosHeaderToken(token);
       } catch (error) {
          console.error(error);

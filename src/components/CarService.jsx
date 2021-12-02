@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import FormReservation from './FormReservation';
 
+import { useNavigate } from 'react-router';
+
 import { useDispatch, useSelector } from 'react-redux';
 import clientActions from '../redux/client/clientActions';
 
@@ -9,10 +11,13 @@ import { alertTimer } from '../helper/alertHelper';
 const CarService = ({ serviceCar }) => {
    const { _id, category, price, service, qty } = serviceCar;
 
+
    // states
    const [activeModal, setActiveModal] = useState(false);
    const [dateHour, setDateHour] = useState({ date: '', hour: '' });
    const [totalPay, setTotalPay] = useState(qty * price)
+
+   const navigate = useNavigate();
 
    // auth y client reducer
    const dispatch = useDispatch();
@@ -29,10 +34,10 @@ const CarService = ({ serviceCar }) => {
          : alertTimer('info', 'Necesita iniciar sesión para poder realizar una cita');
    };
 
-   const makeReservation = () => {
+   const makeReservation = async() => {
       setActiveModal(false);
       const reservation = {
-         _id,
+         // _id,
          nameservice: service,
          date: dateHour.date,
          hour: dateHour.hour,
@@ -42,7 +47,8 @@ const CarService = ({ serviceCar }) => {
          quantity: qty
       }
 
-      dispatch(clientActions.makeReservationAction(reservation));
+      await dispatch(clientActions.makeReservationAction(reservation, _id));
+      navigate('/account');
    }
 
    useEffect(() => {
@@ -56,7 +62,7 @@ const CarService = ({ serviceCar }) => {
       <div className="card-service">
          <h3 className="card-service-title">{service}</h3>
          {
-           loading &&  <h4 className="card-service-title">Guardando cita...</h4>
+            loading && <h4 className="card-service-title">Guardando cita...</h4>
          }
          <p className="card-service-details">Precio: $<span> {price}</span></p>
          <p className="card-service-details">Categoría: <span>{category}</span></p>

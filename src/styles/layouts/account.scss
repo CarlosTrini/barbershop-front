@@ -1,6 +1,61 @@
-@use '../util/mixins.scss' as mixin;
-@use '../util/vars.scss' as vars;
+@use '../util/mixins.scss'as mixin;
+@use '../util/vars.scss'as vars;
 
-.account{
+.header-account {
+   padding: 2rem 0;
+   text-align: center;
+   color: vars.$beige;
+
+   .account-welcome {
+      text-transform: capitalize;
+      letter-spacing: .5rem;
+
+      span {
+         color: vars.$alert;
+      }
+   }
+}
+
+.account {
    @include mixin.margin-top-pages;
+   padding-bottom: 5rem;
+   @include mixin.screen-container;
+
+   &-section-title {
+      margin-top: 2rem;
+      color: vars.$beige;
+   }
+}
+
+.account-services-cards {
+   display: grid;
+   gap: 2rem;
+   justify-content: space-around;
+   max-width: 75rem;
+   margin: 3rem auto;
+   grid-template-columns: repeat(auto-fill, minmax(10rem, 35rem));
+
+   .account-card {
+      padding: 2rem;
+      border-radius: .5rem;
+      color: vars.$beige;
+      box-shadow: .2rem .2rem .5rem vars.$beige;
+      background-color: vars.$oxford-blue;
+      
+      &-title{
+         margin: 2rem 0;
+         text-align: center;
+      }
+      &-details{
+         display: grid;
+         gap:1.5rem;
+         li{
+            font-weight: vars.$bold;
+            letter-spacing: .1rem;
+         }
+         span{
+            color: vars.$alert;
+         }
+      }
+   }
 }

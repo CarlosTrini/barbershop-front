@@ -9,6 +9,7 @@ const initialState = {
    role: localStorage.getItem('role'),
    user: localStorage.getItem('user'),
    token: localStorage.getItem('token'),
+   id: localStorage.getItem('id'),
    error: false,
    loading: false,
    registerSuccess: false
@@ -23,6 +24,7 @@ const authReducer = (state = initialState, action) => {
             role: action.payload.role,
             user: action.payload.user,
             token: action.payload.token,
+            id: action.payload.id,
             loading: false,
             registerSuccess:false
          };
@@ -45,7 +47,8 @@ const authReducer = (state = initialState, action) => {
             login: false,
             role: null,
             user: null,
-            token:null
+            token:null,
+            id: null
          }
       case LOADING:
          return {

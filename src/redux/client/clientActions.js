@@ -11,7 +11,8 @@ const {
    DEL_CAR,
    GET_CLIENT_RESERVATIONS,
    ADD_RESERVATION,
-   LOADING_CLIENT
+   LOADING_CLIENT,
+   DELETE_RESERVATION_CLIENT
 } = CLIENT_TYPES;
 
 
@@ -48,19 +49,19 @@ const getServicesFn = (services) => ({
 })
 
 const getServiceCategory = (category) => { // ACTION
-      return async (dispatch) => {
-         try {
-            const res = await axiosClient.get(`/services/${category}`);
-            if (res?.data?.error) {
-               throw res.data.msg
-            }
-            const services = res.data.msg;
-            dispatch(serviceCategoryFn(services));
-         } catch (error) {
-            console.error(error);
-            alertTimer('warning', 'Ha ocurrido un error revise su conexión o intente más tarde');
+   return async (dispatch) => {
+      try {
+         const res = await axiosClient.get(`/services/${category}`);
+         if (res?.data?.error) {
+            throw res.data.msg
          }
+         const services = res.data.msg;
+         dispatch(serviceCategoryFn(services));
+      } catch (error) {
+         console.error(error);
+         alertTimer('warning', 'Ha ocurrido un error revise su conexión o intente más tarde');
       }
+   }
 }
 const serviceCategoryFn = (servicesFilter) => ({
    type: SERVICE_CATEGORY,
@@ -93,28 +94,77 @@ const delCarAction = () => { //ACTION
    }
 }
 
-const makeReservationAction = (reservation) => {//ACTION
+const makeReservationAction = (reservation, id) => {//ACTION
    setHeaderToken();
-   return async(dispatch) => {
+   return async (dispatch) => {
       dispatch(loadingFn(true));
       try {
          const res = await axiosClient.post('/reservation/', reservation);
          if (res?.data?.error) {
             throw res.data.msg
          }
-         dispatch(makeReservationFn(reservation));
+         dispatch(makeReservationFn(id));
          alertTimer('success', 'La cita fue generada de manera exitosa... Te esperamos!');
       } catch (error) {
-         console.error(error);
+         console.error(error.response);
          checkStatus(error?.response?.status || error);
          dispatch(loadingFn(false));
       }
    }
 }
-const makeReservationFn = (reservation) => ({
+const makeReservationFn = (idReservation) => ({
    type: ADD_RESERVATION,
-   payload: reservation
+   payload: idReservation
 })
+
+const getReservationsAction = (idUser) => { // ACTION
+   setHeaderToken();
+   return async (dispatch) => {
+      dispatch(loadingFn(true));
+      try {
+         const res = await axiosClient.get(`/reservation/client/${idUser}`);
+         if (res?.data?.error) {
+            throw res.data.msg
+         }
+         const reservations = res.data.msg;
+         dispatch(getReservationsFn(reservations));
+      } catch (error) {
+         console.error(error.response);
+         checkStatus(error?.response?.status || error);
+         dispatch(loadingFn(false));
+      }
+   }
+}
+const getReservationsFn = (reservations) => ({
+   type: GET_CLIENT_RESERVATIONS,
+   payload: reservations
+})
+
+
+const delReservationAction = (id) => { //ACTION
+   setHeaderToken();
+   return async(dispatch) => {
+      try {
+         const res = await axiosClient.delete(`/reservation/${id}`);
+         if (res?.data?.error) {
+            // eslint-disable-next-line no-throw-literal
+            throw 200;
+         }
+         alertTimer('success', 'Reservación eliminada');
+
+         dispatch(delReservationFn());
+      } catch (error) {
+         console.error(error.response.data);
+         checkStatus(error?.response?.status || error);
+         dispatch(delReservationFn());
+      }
+   }
+}
+const delReservationFn = (result) => ({
+   type: DELETE_RESERVATION_CLIENT,
+   payload: result
+})
+
 
 // LOADING
 const loadingFn = (status) => ({
@@ -129,7 +179,9 @@ const clientActions = {
    addItemCarAction,
    delItemCarAction,
    delCarAction,
-   makeReservationAction
+   makeReservationAction,
+   getReservationsAction,
+   delReservationAction
 }
 
 export default clientActions;

@@ -7,6 +7,7 @@ const {
    DEL_CAR,
    GET_CLIENT_RESERVATIONS,
    ADD_RESERVATION,
+   DELETE_RESERVATION_CLIENT,
    LOADING_CLIENT
 } = CLIENT_TYPES;
 
@@ -15,7 +16,8 @@ const initialState = {
    services: [],
    car: JSON.parse(localStorage.getItem('carServices')),
    reservationsClient: [],
-   loading: false
+   loading: false,
+   delReservation: false
 }
 
 const clientReducer = (state = initialState, action) => {
@@ -85,8 +87,8 @@ const clientReducer = (state = initialState, action) => {
 
       case ADD_RESERVATION:
          let filterCar;
-         filterCar = state.car.filter(s => s._id !== action.payload._id);
-         
+         filterCar = state.car.filter(s => s._id !== action.payload);
+
          if (filterCar.length < 1) {
             localStorage.removeItem('carServices')
             filterCar = null;
@@ -106,6 +108,20 @@ const clientReducer = (state = initialState, action) => {
             car: null
          }
 
+      case GET_CLIENT_RESERVATIONS:
+         return {
+            ...state,
+            reservationsClient: typeof(action.payload) === 'string' ? [] : action.payload,
+            loading: false
+         }
+
+      case DELETE_RESERVATION_CLIENT:
+      
+         return {
+            ...state,
+            delReservation: false
+
+         }
       case LOADING_CLIENT:
          return {
             ...state,
