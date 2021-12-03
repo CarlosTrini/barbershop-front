@@ -76,11 +76,11 @@ const CarService = ({ serviceCar }) => {
 
             <button className="btn btn-increment-service"
                onClick={handleIncrement}
-            >Add</button>
+            >Aumentar</button>
 
             <button className="btn btn-decrement-service"
                onClick={handleDecrement}
-            >Remove</button>
+            >Disminuir</button>
          </div>
          {
             activeModal &&

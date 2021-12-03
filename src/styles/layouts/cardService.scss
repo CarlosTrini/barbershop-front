@@ -1,12 +1,11 @@
-@use '../util/mixins.scss' as mixin;
-@use '../util/vars.scss' as vars;
+@use '../util/mixins.scss'as mixin;
+@use '../util/vars.scss'as vars;
 
-.card{
+.card {
    padding: 1rem 1.5rem;
    border-radius: .5em;
    border: .1rem solid vars.$beige;
    color: vars.$beige;
-   background-color: vars.$oxford-blue;
    box-shadow: .4rem .3rem vars.$beige;
    transition: all .3s ease-in-out;
    display: flex;
@@ -14,37 +13,39 @@
    justify-content: space-around;
    outline: .1rem solid vars.$beige;
    outline-offset: -10px;
-   
-   &:hover{
-   outline-offset: 0;
-   background-color: vars.$dark;
+
+   &:hover {
+      outline-offset: 0;
+      background-color: vars.$dark;
    }
 
-   &-header{
+   &-header {
       text-align: center;
    }
 
-   &-details{
+   &-details {
       margin: 2rem 0;
       text-transform: capitalize;
-      p{
+
+      p {
          margin-top: 2rem;
          font-weight: vars.$bold;
-        span {
-           font-weight: vars.$thin;
-        }
+
+         span {
+            color: vars.$alert;
+         }
       }
    }
 
-   &-footer{
-      .btn-add-service{
+   &-footer {
+      .btn-add-service {
          background-color: vars.$beige;
          color: vars.$oxford-blue;
          outline: .2rem solid vars.$oxford-blue;
          outline-offset: -.5rem;
          transition: all .3s ease-in-out;
 
-         &:active{
+         &:active {
             transform: scale(.9);
          }
       }

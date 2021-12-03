@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import clientActions from '../redux/client/clientActions';
@@ -9,7 +9,6 @@ import '../styles/layouts/cardsContainer.scss';
 
 const CardsContainer = ({ categorySelected }) => {
 
-   const [spinn, setSpinn] = useState(false);
 
    //client reducer
    const dispatch = useDispatch();

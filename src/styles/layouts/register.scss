@@ -50,6 +50,7 @@
    .btn-register{
       border:.2rem solid vars.$beige;
       color: vars.$beige;
+      background-color: vars.$oxford-blue;
       transition: all .3s ease-in-out;
       &:hover{
          transform: scale(1.1);

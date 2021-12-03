@@ -12,7 +12,7 @@
       padding: 3rem;
       border-radius: .5rem;
       text-align: center;
-      background-color: vars.$beige;
+      color: vars.$alert;
    }
 
    .car-products{
@@ -22,12 +22,9 @@
 
 
 .empty-car-image{
-      margin: 10rem  auto;
+      margin:  auto;
       max-width: 70rem ;
       height: inherit;
-      border-radius: 50%;
-      border: .2rem solid vars.$beige;
-      background-color: vars.$oxford-blue;
 }
 
 .card-service{
@@ -35,12 +32,12 @@
    max-width: 80rem;
    margin: 2rem auto;
    padding: 1rem;
-   border-radius: .3rem;
+   border-radius: .6rem;
    text-align:center;
    background-color: vars.$beige;
    transition: all .3s ease-in-out;
    &:hover{
-      box-shadow: .5rem .5rem .5rem vars.$beige;
+      box-shadow: .5rem .5rem .5rem vars.$blue-light;
    }
 
    &-title{
@@ -56,7 +53,7 @@
    }
    .total-service{
       padding: 1rem 0;
-      background-color: vars.$alert;
+      background-color: vars.$blue-light;
    }
 
    .service-actions{
