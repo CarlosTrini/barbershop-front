@@ -1,0 +1,39 @@
+@use '../util/mixins.scss'as mixin;
+@use '../util/vars.scss'as vars;
+
+.bann-container {
+   display: flex;
+   flex-flow: wrap column;
+   justify-content: center;
+   align-items: center;
+   min-height: 30rem;
+   background: url('/images/hero.jpg') center/cover no-repeat fixed;
+
+   .bann-details {
+      max-width: 80rem;
+      width: 80%;
+      text-align: center;
+      color: vars.$beige;
+
+      .bann-links{
+         margin-top: 3rem;
+         @include mixin.tablet{
+            display: flex;
+            gap: 2rem;
+         }
+      }
+
+      .bann-title {
+         text-shadow: 0 0 .5rem vars.$dark;
+      }
+
+      .btn-bann-services {
+         color: vars.$beige;
+         background-color: vars.$oxford-blue;
+      }
+      .btn-bann-register{
+         color: vars.$oxford-blue;
+         background-color: vars.$beige;
+      }
+   }
+}

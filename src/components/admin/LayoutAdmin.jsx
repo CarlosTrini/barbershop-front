@@ -45,9 +45,9 @@ const LayoutAdmin = ({children}) => {
                   <li>
                      <Link to="/admin/reservations" className="btn">Reservaciones</Link>
                   </li>
-                  <li>
+                  {/* <li>
                      <Link to="/admin/clients" className="btn">Clientes</Link>
-                  </li>
+                  </li> */}
                </ul>
             </nav>
          </header>

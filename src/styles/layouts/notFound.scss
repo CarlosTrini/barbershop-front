@@ -1,0 +1,23 @@
+@use '../util/vars.scss' as vars;
+@use '../util//mixins.scss' as mixin;
+
+
+.notfound-container{
+   @include mixin.screen-container;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 0 4rem;
+
+   .notfound-text{
+      font-size: 5rem;
+      text-shadow: .2rem .2rem .1rem vars.$blue-light;
+      text-transform: capitalize;
+      color: vars.$alert;
+   }
+
+   .btn-notfound{
+      color: vars.$beige;
+   }
+}
