@@ -40,7 +40,7 @@ const loginAction = (data) => {
          dispatch(loginSuccesFn({token, user, role, id}));
          axiosHeaderToken(token);
       } catch (error) {
-         console.error(error);
+         console.error(error.response);
          dispatch(loginErrorFn());
          alertBasic('Error en login', error, 'error');
       }
@@ -65,7 +65,7 @@ const registerAction = (newRegister) => {
             throw 'Ha ocurrido un error, intentelo de nuevo o revise su conexión';
          }
          const msg = res.data.msg;
-         alertTimer(msg);
+         alertTimer('success',msg);
          dispatch(registerSuccessFn());
       } catch (error) {
          const err = error?.response?.data?.msg || error;
