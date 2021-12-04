@@ -38,7 +38,7 @@ const getServicesAction = () => { //ACTION
          const services = res.data.msg;
          dispatch(getServicesFn(services));
       } catch (error) {
-         console.error(error);
+         console.error(error.response);
          alertTimer('warning', 'Ha ocurrido un error revise su conexión o intente más tarde');
       }
    }

@@ -1,9 +1,9 @@
 import axios from 'axios';
-const BASEPATH = 'http://localhost:9000/barbershop/api/';
+// const BASEPATH = process.env.BACKEND_BARBERSHOP || 'http://localhost:9000/barbershop/api/';
 
 
 const axiosClient = axios.create({
-   baseURL: BASEPATH
+   baseURL: 'https://desolate-sea-20956.herokuapp.com/barbershop/api/'
 });
 
 export default axiosClient;

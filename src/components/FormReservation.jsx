@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Modal from './Modal';
@@ -8,6 +8,7 @@ import getCurrentDate from '../helper/dateHelper';
 
 const FormReservation = ({ setDateHour, setActiveModal }) => {
 
+   // eslint-disable-next-line no-unused-vars
    const [currentDay, setCurrentDay] = useState(getCurrentDate())
 
    const { register, formState: { errors }, handleSubmit } = useForm();
