@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c64f58f4.chunk.css",
+    "main.js": "/static/js/main.f8dbd461.chunk.js",
+    "main.js.map": "/static/js/main.f8dbd461.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.cfdd3633.js",
+    "runtime-main.js.map": "/static/js/runtime-main.cfdd3633.js.map",
+    "static/js/2.2b5e2ace.chunk.js": "/static/js/2.2b5e2ace.chunk.js",
+    "static/js/2.2b5e2ace.chunk.js.map": "/static/js/2.2b5e2ace.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.c64f58f4.chunk.css.map": "/static/css/main.c64f58f4.chunk.css.map",
+    "static/js/2.2b5e2ace.chunk.js.LICENSE.txt": "/static/js/2.2b5e2ace.chunk.js.LICENSE.txt",
+    "static/media/admin-menu.77fb00a0.svg": "/static/media/admin-menu.77fb00a0.svg",
+    "static/media/check.8a21fbc4.svg": "/static/media/check.8a21fbc4.svg",
+    "static/media/edit.a65c859d.svg": "/static/media/edit.a65c859d.svg",
+    "static/media/empty-car.4942d50e.svg": "/static/media/empty-car.4942d50e.svg",
+    "static/media/facebook.9114d731.svg": "/static/media/facebook.9114d731.svg",
+    "static/media/bann.scss": "/static/media/hero.bf59bf54.jpg",
+    "static/media/image1.eb585715.png": "/static/media/image1.eb585715.png",
+    "static/media/image2.edb6734f.jpg": "/static/media/image2.edb6734f.jpg",
+    "static/media/image3.6d9f9aa2.jpg": "/static/media/image3.6d9f9aa2.jpg",
+    "static/media/instagram.365dd76c.svg": "/static/media/instagram.365dd76c.svg",
+    "static/media/login.scss": "/static/media/login.ee1edfcb.jpg",
+    "static/media/register.scss": "/static/media/register.2e1bb043.jpg",
+    "static/media/menuCategory.scss": "/static/media/services.500a46cc.jpg",
+    "static/media/tiktok.ce27919c.svg": "/static/media/tiktok.ce27919c.svg",
+    "static/media/trash.50ccad73.svg": "/static/media/trash.50ccad73.svg",
+    "static/media/youtube.daf622d5.svg": "/static/media/youtube.daf622d5.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cfdd3633.js",
+    "static/js/2.2b5e2ace.chunk.js",
+    "static/css/main.c64f58f4.chunk.css",
+    "static/js/main.f8dbd461.chunk.js"
+  ]
+}
